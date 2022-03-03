@@ -5,10 +5,14 @@ import path from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 
-import indexRouter from './routes/index';
-import usersRouter from './routes/users';
+import indexRouter from './routes/index.js';
+import usersRouter from './routes/users.js';
 
 var app = express();
+
+//redefine __dirname since it isn't defined when running as module
+const __dirname = new URL(path.dirname(import.meta.url)).pathname;
+console.log(path.join(__dirname,'views'));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -39,4 +43,4 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-module.exports = app;
+export default app;
