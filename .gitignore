@@ -1,3 +1,6 @@
+## nyc ##
+coverage
+.nyc_output
 
 # Boilerplate gitignore goes brrrrr
 
