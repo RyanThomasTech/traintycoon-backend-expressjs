@@ -12,4 +12,4 @@ VALUES ('Montgomery Station'),
       ('Roosevelt Jackson Heights')
 `;
 
-export const dropStationsTable = 'DROP TABLE messages';
+export const dropStationsTable = 'DROP TABLE stations';

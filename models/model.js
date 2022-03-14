@@ -8,9 +8,13 @@ class Model {
 
     async select(columns, clause) {
         const table = this.table;
-        console.log(pgp.as.format('SELECT $1:name FROM $2:name',[columns,table]));
         //pgp reserves "this" for the query formatting object
         return db.any('SELECT $1:name FROM $2:name',[columns,table]);
+    }
+
+    async insertReturnRow(data){
+        const table = this.table;
+        return db.one('INSERT INTO $1:name($2:name) VALUES ($2:csv) RETURNING *',[table,data]);
     }
 }
 
