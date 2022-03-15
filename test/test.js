@@ -42,7 +42,41 @@ describe('Stations page', function() {
                     expect(res.status).to.equal(200);
                     expect(res.body).to.be.a('Object');
                     expect(res.body.stations).to.have.property('id');
+                    expect(res.body.stations).to.have.property('name','Rockerfeller Center');
+                    done();
+                });
+        });
+    });
+
+    describe ('DELETE request', function() {
+        it('Deletes a given row', function(done) {
+            const data = { id: 1 };
+            server 
+                .delete('/stations')
+                .send(data)
+                .expect(200)
+                .end((err, res) => {
+                    expect(res.status).to.equal(200);
+                    expect(res.body).to.be.a('Object');
+                    expect(res.body.stations).to.have.property('id');
                     expect(res.body.stations).to.have.property('name');
+                    done();
+                });
+        });
+    });
+
+    describe('PUT request', function() {
+        it('Updates a given row with new value(s)', function(done) {
+            const data = { id:2, name:'Grand Central Station'};
+            server
+                .put('/stations')
+                .send(data)
+                .expect(200)
+                .end((err, res) => {
+                    expect(res.status).to.equal(200);
+                    expect(res.body).to.be.a('Object');
+                    expect(res.body.stations).to.have.property('id',2);
+                    expect(res.body.stations).to.have.property('name','Grand Central Station');
                     done();
                 });
         });
