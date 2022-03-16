@@ -1,9 +1,9 @@
-import { expect, server } from './setup.js';
+import { expect, server, BASE_URL } from './setup.js';
 
-describe('Index page', function(){
+describe('TrainTycoon page', function(){
     it('GET to base url', function(done) {
         server
-            .get('/')
+            .get(`${BASE_URL}/`)
             .expect(200)
             .end((err, res) => {
                 expect(res.status).to.equal(200);
@@ -17,7 +17,7 @@ describe('Stations page', function() {
     describe('GET request', function() {
         it('GETs /stations and receives a response', function(done) {
             server
-                .get('/stations')
+                .get(`${BASE_URL}/stations`)
                 .expect(200)
                 .end((err, res) => {
                     expect(res.status).to.equal(200);
@@ -35,7 +35,7 @@ describe('Stations page', function() {
         it('INSERT new data via POST', function(done) {
             const data = { name: 'Rockerfeller Center' }
             server
-                .post('/stations')
+                .post(`${BASE_URL}/stations`)
                 .send(data)
                 .expect(200)
                 .end((err, res) => {
@@ -52,7 +52,7 @@ describe('Stations page', function() {
         it('Deletes a given row', function(done) {
             const data = { id: 1 };
             server 
-                .delete('/stations')
+                .delete(`${BASE_URL}/stations`)
                 .send(data)
                 .expect(200)
                 .end((err, res) => {
@@ -69,7 +69,7 @@ describe('Stations page', function() {
         it('Updates a given row with new value(s)', function(done) {
             const data = { id:2, name:'Grand Central Station'};
             server
-                .put('/stations')
+                .put(`${BASE_URL}/stations`)
                 .send(data)
                 .expect(200)
                 .end((err, res) => {

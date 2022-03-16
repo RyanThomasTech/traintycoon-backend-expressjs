@@ -1,5 +1,4 @@
 import db from '/home/ryan/express/traintycoon/db/database.js'
-import pgp from 'pg-promise';
 
 class Model {
     constructor(table){
@@ -24,6 +23,7 @@ class Model {
 
     async updateReturnRow(data){
         const table = this.table;
+        //combining table and data into an obj to use pgp's nested named parameters
         const obj = { data, table };
         return db.one('UPDATE $/table:name/ SET name = ($/data.name/) WHERE id=$/data.id/ RETURNING *',obj);
     }

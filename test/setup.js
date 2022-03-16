@@ -4,3 +4,4 @@ import app from '../app.js';
 
 export const { expect } = chai;
 export const server = supertest.agent(app);
+export const BASE_URL = '/traintycoon';
